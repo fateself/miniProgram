@@ -1,0 +1,132 @@
+//边框
+//去边框
+//边框合并
+@base: #409eff;
+@base-border: #E2E6ED;
+;
+@font-main: #000;
+@font-normal: #333;
+@font-light: #666;
+@border-color: #edf2fc;
+@danger-color: #fa5555;
+@success-color: #67c23a;
+@submit-focus: darken(@base, 10%);
+@success-focus: lighten(@success-color, 10%);
+@danger-focus: lighten(@danger-color, 10%);
+@table-border-color: #aaaaaa;
+@th-bgcolor: #d1d1d1;
+.error {
+  border: 1px solid @danger-color  !important;
+  border-color: @danger-color  !important;
+}
+
+.border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.round(@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+
+#main {
+  .el-table--border {
+    border-color: @table-border-color;
+    td,
+    th,
+    th.is-leaf {
+      border-color: @table-border-color;
+    }
+  }
+  .el-table::before,
+  .el-table::after {
+    background-color: @table-border-color;
+  }
+  .el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: #F4F4F4;
+  }
+  .el-table {
+    border-collapse: collapse;
+    color: #333; // color:@font-normal;
+    // color:@font-light;
+    tr {
+      height: 40px;
+      .border-box;
+    }
+    td,
+    th {
+      padding: 0;
+    }
+    .cell {
+      font-size: 14px;
+    }
+    th>.cell {
+      text-align: center;
+    }
+    td .cell {
+      font-size: 14px;
+      text-align: center
+    }
+  }
+  thead {
+    color: @font-normal;
+    font-weight: 500;
+    tr {
+      th {
+        background: @th-bgcolor  !important;
+        color: @font-main;
+      }
+    }
+  }
+  .common-table {
+    max-width: 100%;
+    border-collapse: collapse;
+    color: #333;
+    text-align: center;
+    border: 1px solid @table-border-color;
+    thead {
+      color: @font-normal;
+      font-weight: 500;
+      tr {
+        th {
+          background: @th-bgcolor;
+          color: @font-main;
+          border: 1px solid @table-border-color;
+        }
+      }
+    } // color:@font-light;
+    th,
+    td {
+      border: 1px solid @table-border-color;
+      word-break: break-all;
+      padding: 5px;
+    }
+    tr {
+      height: 40px;
+    }
+    th {
+      text-align: center;
+    }
+    td {
+      font-size: 14px;
+      text-align: center;
+      word-break: break-all
+    }
+  }
+}
+
+//头部底色
+.el-header {
+  background: linear-gradient( 0deg, rgba(48, 189, 237, 0.84) 0, rgba(32, 133, 197, 0.82) 100%);
+  .el-dropdown {
+    color: #fff;
+    cursor: pointer;
+    .el-dropdown-link {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
