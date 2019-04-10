@@ -3,8 +3,8 @@
         <el-dialog
                 :title="childData.title"
                 :visible.sync="childData.dialogVisible"
-                width="70%">
-            <el-form :model="fromData">
+                width="80%">
+            <el-form :model="fromData" label-position="left" label-width="100px">
                 <el-row :gutter="12">
                     <el-col :span="12">
                         <el-form-item label="消息编号">
@@ -17,43 +17,42 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+
                 <el-row :gutter="12">
                     <el-col :span="12">
                         <el-form-item label="链接">
-                            <el-input v-model="fromData.link_url"></el-input>
+                            <el-input v-model="fromData.link"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item label="类型">
-                            <el-select v-model="fromData.type">
-                                <el-option
-                                        v-for="item in typeMaps"
-                                        :key="item.key"
-                                        :label="item.value"
-                                        :value="item.key">
-                                </el-option>
-                            </el-select>
-                        </el-form-item>
+                            <el-form-item label="片区">
+                                <el-input v-model="fromData.station"></el-input>
+                            </el-form-item>
+                        <!--<el-form-item label="类型">-->
+                            <!--<el-select v-model="fromData.type" style="width: 415px">-->
+                                <!--<el-option-->
+                                        <!--v-for="item in typeMaps"-->
+                                        <!--:key="item.key"-->
+                                        <!--:label="item.value"-->
+                                        <!--:value="item.key">-->
+                                <!--</el-option>-->
+                            <!--</el-select>-->
+                        <!--</el-form-item>-->
                     </el-col>
                 </el-row>
                 <el-row :gutter="12">
-                    <el-col :span="12">
-                        <el-form-item label="片区">
-                            <el-input v-model="fromData.station"></el-input>
-                        </el-form-item>
-                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="经度">
                             <el-input v-model="fromData.latitude"></el-input>
                         </el-form-item>
                     </el-col>
-                </el-row>
-                <el-row :gutter="12">
                     <el-col :span="12">
                         <el-form-item label="纬度">
                             <el-input v-model="fromData.longitude"></el-input>
                         </el-form-item>
                     </el-col>
+                </el-row>
+                <el-row :gutter="12">
                     <el-col :span="12">
                         <el-form-item label="图片地址">
                             <el-input v-model="fromData.image"></el-input>
@@ -70,16 +69,15 @@
     </div>
 </template>
 <script>
-    import {typeMaps} from '../assets/js/selectOptions'
+//    import {typeMaps} from '../assets/js/selectOptions'
     export default {
         data(){
             return {
-                typeMaps,
                 fromData: {
                     mid: '',
                     content: '',
-                    link_url: '',
-                    type: '',
+                    link: '',
+                    type: 1,
                     station: '',
                     image: '',
                     latitude: '',
@@ -90,60 +88,76 @@
         props: ['childData'],
         watch: {
             'childData.dialogVisible'(val){
-                if(val){
-                    if(this.childData.mid){
+                if (val) {
+                    if (this.childData.mid) {
                         this.showEditForm();
-                    }else {
+                    } else {
                         console.log('我是新增');
                     }
-
                 }
             },
         },
         methods: {
-
-//
+            // 新增
             submitForAdd(){
-                let postData = this.$qs.stringify(this.fromData);
-                let url='https://caizhi101.com/index.php?m=admin&c=message&a=add&';
-                url = url + postData;
-                console.log(url);
-                this.$axios.post(url).then(res=>{
-                    console.log(res);
+                let postData = Object.assign(
+                    { token:localStorage.getItem('token'),
+                        operate:1
+                    }, this.fromData)
+                 postData = this.$qs.stringify(postData);
+                let url = 'https://caizhi101.com/index.php?m=admin&c=message&a=add';
+                this.$axios.post(url,postData).then(res => {
+                    if(res.data.return.code === 0){
+                        this.$message.success('新增成功');
+                        this.cancel();
+                        this.$emit('callBack');
+                    }else {
+                        this.$message.error('操作失败')
+                    }
                 })
             },
 
 
             //编辑的时候  获取的信息
             showEditForm(){
-                let postData = {mid:this.childData.mid};
+                let postData = {mid: this.childData.mid};
                 let url = 'https://caizhi101.com/index.php?m=admin&c=message&a=info&';
                 url = url + this.$qs.stringify(postData);
-                console.log(url);
-                this.$axios.get(url).then(res=>{
-                    this.fromData = res.data.data ;
+                this.$axios.get(url).then(res => {
+                    if(res.data.return.code === 0){
+                        this.fromData = res.data.data;
+                    }else {
+                        this.$message.error('操作失败')
+                    }
+                }).catch(err => {
 
-                }).catch(err=>{})
+                })
             },
 
             //编辑完  保存
             saveForm(){
-                let postData = {mid:this.fromData.mid,status:''};
-                let url = 'https://caizhi101.com/index.php?m=admin&c=message&a=status&';
-                url = url + this.$qs.stringify(postData);
-                this.$axios.post(url).then(res=>{
-                    console.log(res);
-                    this.cancel() ;
-                }).catch(err=>{})
+                let postData =Object.assign({operate:2,token:localStorage.getItem('token')},this.fromData,) ;
+                let url = 'https://caizhi101.com/index.php?m=admin&c=message&a=status';
+                postData =  this.$qs.stringify(postData);
+                this.$axios.post(url,postData).then(res => {
+                    if(res.data.return.code === 0){
+                        this.$message.success('编辑成功!');
+                        this.$emit('callBack')
+                        this.cancel();
+                    }else {
+                        this.$message.success('操作失败!')
+                    }
+                }).catch(err => {
+                })
             },
 
             cancel(){
-            this.childData.dialogVisible = false;
-                this.childData.mid = '' ;
-            for(var k in this.fromData){
-                this.fromData[k] = ''
+                this.$emit('displayCall')
+                this.childData.mid = '';
+                for (var k in this.fromData) {
+                    this.fromData[k] = ''
+                }
             }
-}
         }
     }
 </script>

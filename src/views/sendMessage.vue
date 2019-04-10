@@ -1,16 +1,16 @@
 <!--发布消息-->
 <template>
     <div class="send-message">
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="messageForm" label-width="80px">
             <el-form-item label="展示片区">
-                <el-input ></el-input>
+                <el-input v-model="messageForm.showArea"></el-input>
             </el-form-item>
             <el-form-item label="链接">
-                <el-input ></el-input>
+                <el-input v-model="messageForm.link"></el-input>
             </el-form-item>
 
             <el-form-item label="内容">
-                <el-input type="textarea" ></el-input>
+                <el-input type="textarea" v-model="messageForm.contain"></el-input>
             </el-form-item>
 
             <el-form-item>
@@ -29,3 +29,22 @@
         </el-form>
     </div>
 </template>
+
+<script>
+    export default {
+        data(){
+            return {
+                messageForm:{
+                    showArea:'',
+                    link:'',
+                    contain:'',
+
+                }
+            }
+        },
+
+        methods:{
+
+        }
+    }
+</script>

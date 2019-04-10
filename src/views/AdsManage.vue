@@ -1,11 +1,11 @@
 <!--广告管理-->
 <template>
     <div class="ads-manage">
-        <el-form label-position="left" :inline="true">
+        <el-form label-position="left" :inline="true" :model="adsForm">
             <el-row>
                 <el-col :span=8>
                     <el-form-item label="内容">
-                        <el-input></el-input>
+                        <el-input v-model="adsForm"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="8">
@@ -84,3 +84,17 @@
         </div>
     </div>
 </template>
+
+<script>
+
+     export default {
+         data(){
+
+             return {
+                 adsForm:{
+
+                 }
+             }
+         }
+     }
+</script>

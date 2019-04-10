@@ -1,16 +1,17 @@
 <!--会员管理-->
 <template>
     <div class="vip-manage">
-        <el-form label-position="left" :inline="true">
+        <el-form label-position="left" :inline="true" :model="vipForm">
             <el-row>
                 <el-col :span="8">
                     <el-form-item label="微信名">
-                        <el-input></el-input>
+                        <el-input v-model="vipForm.nick"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="12">
                     <el-form-item label="注册时间">
                         <el-date-picker
+                                v-model="vipForm.registerTime"
                                 type="datetimerange"
                                 range-separator="-">
                         </el-date-picker>
@@ -20,12 +21,13 @@
             <el-row>
                 <el-col :span="8">
                     <el-form-item label="点击广告">
-                        <el-input ></el-input>
+                        <el-input v-model="vipForm.Ads"></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="12">
                     <el-form-item label="登录时间">
                         <el-date-picker
+                                v-model="vipForm.loginTime"
                                 type="datetimerange"
                                 range-separator="-">
                         </el-date-picker>
@@ -84,3 +86,18 @@
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        data(){
+            return {
+                vipForm:{
+                    nick:'',
+                    registerTime:'',
+                    Ads:'',
+                    loginTime:'',
+                }
+            }
+        }
+    }
+</script>
