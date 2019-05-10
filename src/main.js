@@ -10,6 +10,7 @@ import '@/assets/css/init.css'//初始化css
 import '@/assets/css/reset.less'//改变element原来样式
 Vue.prototype.$axios = axios;
 Vue.prototype.$qs = qs;
+Vue.prototype.$md5 = md5;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 //element-ui
 import ElementUI from 'element-ui';

@@ -220,7 +220,7 @@
         methods:{
             getList(pageValue){
                 let postData = Object.assign({token:localStorage.getItem('token')},this.messageForm,{page:pageValue});
-                let url = 'https://caizhi101.com/index.php?m=admin&c=message&a=list&';
+                let url = 'http://39.106.70.137:20010/index.php?m=admin&c=message&a=list&';
                 url = url + this.$qs.stringify(postData);
                 this.$axios.get(url).then(res=>{
                     if(res.data.return.code === 0){
