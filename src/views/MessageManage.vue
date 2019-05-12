@@ -195,6 +195,7 @@
     import {statusmaps} from '../assets/js/selectOptions'
     import messageManangeDialog from '../components/messageManageDialog.vue'
     import  pagination from '../components/pagination.vue'
+    import baseUrl from '../assets/js/config'
     export default{
         data(){
             return {
@@ -219,6 +220,7 @@
         components:{messageManangeDialog,pagination},
         methods:{
             getList(pageValue){
+                console.log(baseUrl)
                 let postData = Object.assign({token:localStorage.getItem('token')},this.messageForm,{page:pageValue});
                 let url = 'http://39.106.70.137:20010/index.php?m=admin&c=message&a=list&';
                 url = url + this.$qs.stringify(postData);

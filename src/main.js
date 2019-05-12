@@ -20,22 +20,22 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false;
 
 
-// router.beforeEach((to, from, next) => {
-//     if (to.meta.requireAuth) {
-//         if (localStorage.getItem('token')) {
-//             next();
-//         }
-//         else {
-//             next({
-//                 path: '/Login',
-//                 query: { redirect: to.fullPath }
-//             })
-//         }
-//     }
-//     else {
-//         next();
-//     }
-// })
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {
+        if (localStorage.getItem('token')) {
+            next();
+        }
+        else {
+            next({
+                path: '/Login',
+                query: { redirect: to.fullPath }
+            })
+        }
+    }
+    else {
+        next();
+    }
+})
 
 
 
