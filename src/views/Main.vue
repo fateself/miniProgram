@@ -4,8 +4,8 @@
             <el-header>
                 <Header/>
             </el-header>
-            <el-container>
-                <el-aside width="200px" style="background-color:#285D8F;height:600px">
+            <el-container style="height:100%">
+                <el-aside width="200px" style="background-color:#285D8F">
                     <el-menu
                             :default-active="$route.path"
                             class="el-menu-vertical-demo"

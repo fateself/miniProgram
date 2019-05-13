@@ -15,6 +15,7 @@
 @danger-focus: lighten(@danger-color, 10%);
 @table-border-color: #aaaaaa;
 @th-bgcolor: #d1d1d1;
+
 .error {
   border: 1px solid @danger-color  !important;
   border-color: @danger-color  !important;
@@ -35,45 +36,56 @@
 #main {
   .el-table--border {
     border-color: @table-border-color;
+
     td,
     th,
     th.is-leaf {
       border-color: @table-border-color;
     }
   }
+
   .el-table::before,
   .el-table::after {
     background-color: @table-border-color;
   }
+
   .el-table--striped .el-table__body tr.el-table__row--striped td {
     background: #F4F4F4;
   }
+
   .el-table {
     border-collapse: collapse;
     color: #333; // color:@font-normal;
+
     // color:@font-light;
     tr {
       height: 40px;
       .border-box;
     }
+
     td,
     th {
       padding: 0;
     }
+
     .cell {
       font-size: 14px;
     }
+
     th>.cell {
       text-align: center;
     }
+
     td .cell {
       font-size: 14px;
       text-align: center
     }
   }
+
   thead {
     color: @font-normal;
     font-weight: 500;
+
     tr {
       th {
         background: @th-bgcolor  !important;
@@ -81,15 +93,18 @@
       }
     }
   }
+
   .common-table {
     max-width: 100%;
     border-collapse: collapse;
     color: #333;
     text-align: center;
     border: 1px solid @table-border-color;
+
     thead {
       color: @font-normal;
       font-weight: 500;
+
       tr {
         th {
           background: @th-bgcolor;
@@ -97,19 +112,24 @@
           border: 1px solid @table-border-color;
         }
       }
-    } // color:@font-light;
+    }
+
+    // color:@font-light;
     th,
     td {
       border: 1px solid @table-border-color;
       word-break: break-all;
       padding: 5px;
     }
+
     tr {
       height: 40px;
     }
+
     th {
       text-align: center;
     }
+
     td {
       font-size: 14px;
       text-align: center;
@@ -120,13 +140,21 @@
 
 //头部底色
 .el-header {
-  background: linear-gradient( 0deg, rgba(48, 189, 237, 0.84) 0, rgba(32, 133, 197, 0.82) 100%);
+  background: linear-gradient(0deg, rgba(48, 189, 237, 0.84) 0, rgba(32, 133, 197, 0.82) 100%);
+
   .el-dropdown {
     color: #fff;
     cursor: pointer;
+
     .el-dropdown-link {
       display: flex;
       align-items: center;
     }
   }
+}
+
+// 分页 
+.paging {
+  text-align: right;
+  margin-top: 20px;
 }
