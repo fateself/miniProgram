@@ -69,7 +69,7 @@
                    @click="saveForm">确 定</el-button>
         <el-button v-else
                    type="primary"
-                   @click="submitForAdd">确add 定</el-button>
+                   @click="submitForAdd">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -97,9 +97,21 @@ export default {
     'childData.dialogVisible' (val) {
       if (val) {
         if (this.childData.mid) {
+          console.log('编辑----' + this.childData.mid)
+
           this.showEditForm();
         } else {
           console.log('我是新增')
+          this.fromData = {
+            mid: '',
+            content: '',
+            link: '',
+            type: 1,
+            station: '',
+            image: '',
+            latitude: '',
+            longitude: '',
+          }
         }
       }
     },
