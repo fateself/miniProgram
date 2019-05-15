@@ -8,11 +8,9 @@
             <el-form-item label="链接">
                 <el-input v-model="messageForm.link"></el-input>
             </el-form-item>
-
             <el-form-item label="内容">
                 <el-input type="textarea" v-model="messageForm.contain"></el-input>
             </el-form-item>
-
             <el-form-item>
                 <el-upload
                         class="upload-demo"

@@ -119,10 +119,7 @@ export default {
   methods: {
     // 新增
     submitForAdd () {
-      let postData = Object.assign(
-        {          token: localStorage.getItem('token'),
-          operate: 1
-        }, this.fromData)
+      let postData = Object.assign({  token: localStorage.getItem('token'), operate: 1}, this.fromData)
       postData = this.$qs.stringify(postData);
       let url = baseUrl + '/index.php?m=admin&c=message&a=add';
       this.$axios.post(url, postData).then(res => {

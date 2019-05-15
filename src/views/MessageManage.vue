@@ -1,4 +1,4 @@
-<!--消息管理-->
+<!--广告管理-->
 <template>
   <div class="message-manage">
     <div class="messgae-from">
@@ -6,6 +6,7 @@
         <!-- <span>|</span> -->
         <span>消息管理</span>
       </div>
+
       <el-form :model="messageForm"
                :inline="true"
                label-position="left">

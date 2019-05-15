@@ -76,9 +76,12 @@ export default {
           let url = 'http://39.106.70.137:20010/index.php?m=admin&c=login&a=login&';
           url = url + this.$qs.stringify(postData);
           this.$axios.get(url).then(res => {
+              this.$message('登陆成功！');
             localStorage.setItem('token', res.data.data.token);
             this.$router.push({ name: 'Main' });
-          }).catch(err => { })
+          }).catch(err => {
+              this.$message('账号或密码错误！');
+          })
         } else {
           return false;
         }
